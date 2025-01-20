@@ -15,7 +15,7 @@ fn main() {
 
     // 数値を文字列に変換
     let choices = ["グー", "チョキ", "パー"];
-    // 結果を表示
+
     println!("あなたの選択: {}", choices[user_choice as usize]);
     println!("コンピュータの選択: {}", choices[computer_choice as usize]);
     println!("{}", result);
