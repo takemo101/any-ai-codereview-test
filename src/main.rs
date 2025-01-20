@@ -7,6 +7,7 @@ fn main() {
     // 選択肢を表示
     println!("0: グー, 1: チョキ, 2: パー");
 
+    // ユーザーの選択を受け取る
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("入力エラー");
     let user_choice: u32 = input.trim().parse().expect("無効な入力");
