@@ -18,7 +18,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.REVIEW_API_KEY }}
           LANGUAGE: Japanese
-          OPENAI_API_ENDPOINT: ${{ REVIEW_API_ENDPOINT }}
+          OPENAI_API_ENDPOINT: ${{ secrets.REVIEW_API_ENDPOINT }}
           MODEL: ${{ secrets.REVIEW_API_MODEL }}
           PROMPT: |
             あなたは経験豊富なRust開発者です。
