@@ -1,6 +1,7 @@
 use rand::Rng;
 
 pub fn play_janken(user_choice: u32) -> (u32, String) {
+    // コンピュータの選択
     let computer_choice = rand::thread_rng().gen_range(0..=2);
 
     // 勝敗を判定
@@ -10,6 +11,5 @@ pub fn play_janken(user_choice: u32) -> (u32, String) {
         _ => "引き分け！".to_string(),
     };
 
-    // 戻り値として返す
     (computer_choice, result)
 }
