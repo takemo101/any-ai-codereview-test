@@ -5,13 +5,22 @@ use std::io;
 fn main() {
     println!("ジャンケンを始めましょう！");
     println!("0: グー, 1: チョキ, 2: パー");
+    println!("終了するには 'exit' と入力してください。");
 
     // ジャンケンの勝敗がつくまでループ
     loop {
         // ユーザーの選択を受け取る
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("入力エラー");
-        let user_choice: u32 = input.trim().parse().expect("無効な入力");
+        let input = input.trim();
+
+        // 'exit' と入力された場合、ループを抜ける
+        if input.eq_ignore_ascii_case("exit") {
+            println!("ゲームを終了します。");
+            break;
+        }
+
+        let user_choice: u32 = input.parse().expect("無効な入力");
 
         // ジャンケンの結果を取得
         let (computer_choice, result) = game::play_janken(user_choice);
