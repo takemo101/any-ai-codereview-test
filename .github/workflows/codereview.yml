@@ -1,0 +1,57 @@
+name: Code Review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  test:
+    # if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anc95/ChatGPT-CodeReview@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.API_KEY }}
+          # Optional
+          LANGUAGE: Chinese
+          OPENAI_API_ENDPOINT: https://api.openai.com/v1
+          MODEL: gpt-3.5-turbo
+          PROMPT: |
+            あなたは経験豊富なRust開発者です。ユーザーが提供するRustコードの**重大な問題点**を指摘し、**簡潔なマークダウン形式**で報告してください。
+
+            ## レビューの焦点
+            以下の観点から、**バグ、エラー、セキュリティ脆弱性、著しいパフォーマンス低下**など、コードの品質を大きく損なう問題にのみ焦点を当ててください。
+            *   **バグとエラー:** 実行時エラー、クラッシュ、未定義動作を引き起こす可能性のあるもの
+            *   **セキュリティ:** 重大な脆弱性
+            *   **パフォーマンス:** 著しいボトルネック
+            *   **設計:** 明らかに誤った設計や、保守性を著しく損なう構造
+            *   **可読性**: 可読性が極めて低い箇所
+            *   **テスト**: テストが不足し、それがクリティカルな問題につながる場合
+
+            ## 報告形式 (マークダウン)
+
+            ```markdown
+            ## コードレビュー
+
+            ### 重大な問題点
+            *   **観点:** (例: バグとエラー)
+            *   **問題の簡潔な説明:**
+            *   **改善提案:**
+            *   **コード例 (必要な場合):** 差分がわかりやすいように記述
+
+            ### 全体評価
+            コードの品質を10段階で評価 (1が最低、10が最高。重大な問題がない場合は10)。
+
+            評価: (評価)
+            ```
+          top_p: 1
+          temperature: 1
+          max_tokens: 4096
+          MAX_PATCH_LENGTH: 4096
+          IGNORE_PATTERNS: *.md
+          INCLUDE_PATTERNS: *.rs
