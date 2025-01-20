@@ -22,11 +22,11 @@ fn main() {
         println!("コンピュータの選択: {}", choices[computer_choice as usize]);
         println!("{}", result);
 
-        // あいこの場合は再度ジャンケンを行う
+        // 引き分けの場合は再度ジャンケンを行う
         if result != "引き分け！" {
-            break; // あいこでなければループを抜ける
+            break; // 引き分けでなければループを抜ける
         } else {
-            println!("あいこです。もう一度やりましょう！");
+            println!("引き分けです。もう一度やりましょう！");
         }
     }
 }
