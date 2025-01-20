@@ -10,14 +10,14 @@ on:
 
 env:
   REVIEW_API_KEY: ${{ secrets.REVIEW_API_KEY }}
-  REVIEW_API_ENDPOINT: ${{ secrets.REVIEW_API_ENDPOINT }}
   REVIEW_API_MODEL: ${{ secrets.REVIEW_API_MODEL }}
 
 jobs:
   test:
+    if: ${{ contains(github.event.pull_request.title, ':review') }}
     runs-on: ubuntu-latest
     steps:
-      - name: プルリクエストのタイトルを出力
+      - name: Display PR title
         run: |
           echo "PullRequest: ${{ github.event.pull_request.title }}"
       - uses: anc95/ChatGPT-CodeReview@main
@@ -25,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ env.REVIEW_API_KEY }}
           LANGUAGE: Japanese
-          OPENAI_API_ENDPOINT: ${{ env.REVIEW_API_ENDPOINT }}
+          OPENAI_API_ENDPOINT: https://openrouter.ai/api/v1
           MODEL: ${{ env.REVIEW_API_MODEL }}
           PROMPT: |
             あなたは経験豊富なRust開発者です。
