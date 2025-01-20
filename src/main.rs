@@ -13,6 +13,7 @@ fn main() {
         io::stdin().read_line(&mut input).expect("入力エラー");
         let user_choice: u32 = input.trim().parse().expect("無効な入力");
 
+        // ジャンケンの結果を取得
         let (computer_choice, result) = game::play_janken(user_choice);
 
         // 数値を文字列に変換
