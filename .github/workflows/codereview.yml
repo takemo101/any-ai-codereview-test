@@ -27,6 +27,15 @@ jobs:
           LANGUAGE: Japanese
           OPENAI_API_ENDPOINT: https://openrouter.ai/api/v1
           MODEL: ${{ env.REVIEW_API_MODEL }}
+          PROMPT: |
+            以下の観点に基づいてコードレビューを行ってください。
+            軽微な問題、好みの問題は無視してください。
+            - バグ
+            - セキュリティ
+            - パフォーマンス
+            - 設計
+            - 可読性
+            - テスト
           top_p: 1
           temperature: 1
           max_tokens: 4096
