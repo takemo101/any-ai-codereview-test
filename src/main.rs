@@ -6,13 +6,17 @@ fn main() {
     println!("ジャンケンを始めましょう！");
     println!("0: グー, 1: チョキ, 2: パー");
 
+    // ユーザーの選択を受け取る
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("入力エラー");
     let user_choice: u32 = input.trim().parse().expect("無効な入力");
 
     let (computer_choice, result) = game::play_janken(user_choice);
 
-    println!("あなたの選択: {}", user_choice);
-    println!("コンピュータの選択: {}", computer_choice);
+    // 数値を文字列に変換
+    let choices = ["グー", "チョキ", "パー"];
+
+    println!("あなたの選択: {}", choices[user_choice as usize]);
+    println!("コンピュータの選択: {}", choices[computer_choice as usize]);
     println!("{}", result);
 }
