@@ -10,5 +10,6 @@ pub fn play_janken(user_choice: u32) -> (u32, String) {
         _ => "引き分け！".to_string(),
     };
 
+    // 戻り値として返す
     (computer_choice, result)
 }
