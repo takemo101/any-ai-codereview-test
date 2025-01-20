@@ -6,6 +6,7 @@ fn main() {
     println!("ジャンケンを始めましょう！");
     println!("0: グー, 1: チョキ, 2: パー");
 
+    // ジャンケンの勝敗がつくまでループ
     loop {
         // ユーザーの選択を受け取る
         let mut input = String::new();
