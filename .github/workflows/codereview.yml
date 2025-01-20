@@ -16,10 +16,10 @@ jobs:
       - uses: anc95/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.REVIEW_API_KEY }}
           LANGUAGE: Japanese
-          OPENAI_API_ENDPOINT: https://api.openai.com/v1
-          MODEL: gpt-3.5-turbo
+          OPENAI_API_ENDPOINT: ${{ REVIEW_API_ENDPOINT }}
+          MODEL: ${{ secrets.REVIEW_API_MODEL }}
           PROMPT: |
             あなたは経験豊富なRust開発者です。ユーザーが提供するRustコードの**重大な問題点**を指摘し、**簡潔なマークダウン形式**で報告してください。
 
