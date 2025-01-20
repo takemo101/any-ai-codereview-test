@@ -27,16 +27,6 @@ jobs:
           LANGUAGE: Japanese
           OPENAI_API_ENDPOINT: https://openrouter.ai/api/v1
           MODEL: ${{ env.REVIEW_API_MODEL }}
-          PROMPT: |
-            あなたは経験豊富なRust開発者として、以下の観点に基づいてコードレビューを行ってください。
-            - バグ: 実行時エラー、クラッシュ、未定義動作を引き起こす可能性のあるもの
-            - セキュリティ: 重大な脆弱性
-            - パフォーマンス: 著しいボトルネック
-            - 設計: 保守性を著しく損なう構造
-            - 可読性：可読性が極めて低い箇所
-            - テスト: テストが不足し、クリティカルな問題につながる場合
-
-            軽微な問題、好みの問題は無視してください。
           top_p: 1
           temperature: 1
           max_tokens: 4096
