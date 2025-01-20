@@ -13,7 +13,7 @@ env:
   REVIEW_API_MODEL: ${{ secrets.REVIEW_API_MODEL }}
 
 jobs:
-  test:
+  codereview:
     if: ${{ contains(github.event.pull_request.title, ':review') }}
     runs-on: ubuntu-latest
     steps:
